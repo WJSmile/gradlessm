@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.controller.mapper.BlogMapper">
+    <resultMap id="BaseResultMap" type="com.ssm.controller.pojo.Blog">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="CHAR" property="BlogName" />
+        <result column="cardId" jdbcType="CHAR" property="BlogContest" />
+    </resultMap>
+    <insert id="insertBlog"   parameterType="com.ssm.controller.pojo.Blog">
+    insert into bolg(name,cardId) value(#{BlogName,jdbcType=VARCHAR},#{BlogContest,jdbcType=VARCHAR})
+    </insert>
+    <select id="selectBlog" resultMap="BaseResultMap">
+        select * from bolg
+    </select>
+    <delete id="deleteBlog" parameterType="java.lang.Integer">
+    delete from bolg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+   <update id="updateBlog"  parameterType="com.ssm.controller.pojo.Blog">
+    update bolg
+    set name = #{BlogName,jdbcType=CHAR},
+      cardId = #{BlogContest,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+   </update>
+</mapper>
